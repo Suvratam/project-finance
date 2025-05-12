@@ -1,17 +1,16 @@
 pipeline {
     agent any
     stages{
-        stage('build project'){
+        stage('git clone'){
             steps{
-                git url:'https://github.com/akshu20791/pro1/', branch: "master"
-                sh 'mvn clean package'
+                git url:'https://github.com/Suvratam/project-finance/', branch: "master"
               
             }
         }
         stage('Build docker image'){
             steps{
                 script{
-                    sh 'docker build -t akshu20791/staragileprojectfinance:v1 .'
+                    sh 'docker build -t suvratam/staragileprojectfinance:v1 .'
                     sh 'docker images'
                 }
             }
@@ -20,7 +19,7 @@ pipeline {
         
      stage('Deploy') {
             steps {
-                sh 'sudo docker run -itd --name My-first-containe21211 -p 8083:8081 akshu20791/staragileprojectfinance:v1'
+                sh 'sudo docker run -itd --name My-first-containe21211 -p 8083:8081 suvratam/staragileprojectfinance:v1'
                   
                 }
             }
