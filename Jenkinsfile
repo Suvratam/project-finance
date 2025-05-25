@@ -9,13 +9,7 @@ pipeline {
             steps {
                 git 'https://github.com/Suvratam/star-agile-banking-finance.git'
             }
-        }
-        stage('Ansible') {
-            steps {
-                ansiblePlaybook credentialsId: 'devops', disableHostKeyChecking: true, installation: 'Ansible', playbook: '/var/lib/jenkins/workspace/jen-Ans/app.yml', vaultTmpPath: ''
-            }
-        }
-        
+        }        
         stage('Maven build') {
             steps {
                 sh 'mvn clean package'
